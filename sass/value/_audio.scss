@@ -1,0 +1,67 @@
+.audio-player {
+    height: 50px;
+    width: 350px;
+    color: rgb(255, 255, 255);
+    color: white;
+    -webkit-user-select: none;
+    /* webkit (safari, chrome) browsers */
+    -moz-user-select: none;
+    /* mozilla browsers */
+    -khtml-user-select: none;
+    /* webkit (konqueror) browsers */
+    -ms-user-select: none;
+    /* IE10+ */
+}
+
+.controls {
+    height: 50px;
+    background-color: rgb(165, 42, 42);
+    width: 350px;
+    border-radius: 15px;
+}
+
+.time {
+    font-size: 10px;
+    color: white;
+    position: relative;
+    top: 14px;
+    margin: 5px;
+}
+
+.ui-progressbar {
+    background: rgb(95, 158, 160);
+}
+
+.ui-progressbar-value {
+    background: rgb(127, 255, 0);
+}
+
+.progressbar,
+.volume {
+    height: 10px;
+    display: inline-block;
+    border-radius: 0px;
+    border: none;
+    position: relative;
+    top: 16px;
+}
+
+.progressbar {
+    width: 150px;
+}
+
+#play,
+#mute {
+    font-size: 16px;
+    width: 20px;
+    position: relative;
+    top: 17px;
+}
+
+#play {
+    margin-left: 15px;
+}
+
+.volume {
+    width: 50px;
+}

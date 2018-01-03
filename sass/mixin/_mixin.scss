@@ -1,0 +1,9 @@
+@mixin widthheight($width,$height){
+  width: $width;
+  height: $height;
+}
+@mixin flexbox_standart($justify,$align){
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}

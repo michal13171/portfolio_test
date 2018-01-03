@@ -1,0 +1,170 @@
+@import 'value/reset.scss';
+@import 'value/settings.scss';
+@import 'mixin/mixin.scss';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.header {
+    @include widthheight(100%,
+    25vh);
+    @include flexbox_standart(center,
+    center);
+    background-color: $header_color;
+    .header-item {
+        @include widthheight(50%,
+        20vh);
+        @include flexbox_standart(center,
+        center);
+        flex-direction: column-reverse;
+        .header_img {
+            @include widthheight(200px,
+            150px);
+            object-fit: contain;
+        }
+        .text_h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.navbar {
+    @include widthheight(100%,
+    42px);
+    background-color: #8D6E63;
+    display: inline-flex;
+    flex-direction: row;
+    .nav_list {
+        display: inline-flex;
+        @include flexbox_standart(flex-end,
+        center);
+        @include widthheight(100%,
+        42px);
+    }
+    .nav_list_one {
+        @extend .nav_list;
+        justify-content: flex-start;
+    }
+    .nav-item {
+        @include widthheight(100px,
+        42px);
+        @include flexbox_standart(center,
+        center);
+        a {
+            color: $white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        box-sizing: border-box;
+        border-bottom: 2px inset transparent;
+    }
+    .nav-item:hover {
+        border: 2px dotted #EF5350;
+        transition: 1s ease;
+    }
+    .active {
+        img {
+            width: 30px;
+        }
+    }
+}
+
+.section_one {
+    @include widthheight(100%,
+    80vh);
+    @include flexbox_standart(center,
+    center);
+    .container {
+        @include widthheight(95%,
+        79vh);
+        background-color: #90A4AE;
+        .row {
+            @include widthheight(100%,
+            30vh);
+            @include flexbox_standart(space-between,
+            center);
+            .box {
+                @include widthheight(35%,
+                28vh);
+                background-color: #C5E1A5;
+                border-radius: 20px;
+                box-sizing: border-box;
+                h2 {
+                    text-align: center;
+                    font-size: 2rem;
+                    font-weight: bold;
+                    line-height: 1.5;
+                }
+                p {
+                    word-break: break-all;
+                    font-size: 16px;
+                }
+                .audio_container {
+                    @include widthheight(100%,
+                    30px);
+                    display: flex;
+                    justify-content: center;
+                    @import 'value/audio.scss';
+                }
+                .click_slider {
+                    border: none;
+                    margin: 0 auto;
+                    width: 100px;
+                    height: 25px;
+                    background-color: rgb(245, 245, 220);
+                    @include flexbox_standart(center,
+                    center);
+                    border-radius: 15px;
+                    font-weight: 900;
+                    font-size: 14px;
+                }
+                .slides {
+                    @include flexbox_standart(center,
+                    center);
+                    @include widthheight(400px,
+                    15vh);
+                    overflow: hidden;
+                    margin: 0 auto;
+                }
+                .slides img {
+                    border-radius: 100px;
+                    width: 128px;
+                    height: auto;
+                    border: 3px solid;
+                    border-color: rgb(255, 0, 0);
+                    margin: 15px;
+                    min-height: 71px;
+                    min-width: 71px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+            .line {
+                position: relative;
+                background-color: inherit;
+                @include flexbox_standart(center,
+                center);
+                flex-direction: column;
+                >h2 {
+                    width: 400px;
+                    border-bottom: 1px solid rgb(255, 255, 255);
+                    line-height: 0.1em;
+                }
+                >h2 span {
+                    background: #90A4AE;
+                    padding: 0 10px;
+                }
+            }
+        }
+        .another {
+            justify-content: center;
+        }
+    }
+}
+
+@import 'mobile/tablet.scss';
+@import 'mobile/phone.scss';
