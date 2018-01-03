@@ -82,27 +82,33 @@ $(document).ready(function () {
         slideshow.prototype._click_result = function () {
             this._button.addEventListener('click', this._proporties.bind(this), false);
         }
-        slideshow.prototype._proporties = function ($parent, $elem, $number) {
-            const ilosc = 6;
-            const max = 42;
-            this._parent = document.querySelector('.slides');
-            this._elem = document.createElement(this._parent);
-            this._elem.textContent = this._number;
-            console.log(this._elem);
-            this._parent.appendChild(this._elem);
-            var pushing = [];
-            for (var i = 0; i < ilosc; i++) {
-                var los = Math.floor(Math.random() * max + 1);
-                if (pushing.indexOf(los) < 0) {
-                    pushing.push(los);
-                    addElement('img', los);
-                }
-                else {
-                    i--;
-                    continue;
-                }
-                console.log(pushing);
-            }
+        slideshow.prototype._proporties = function ($parent, $elem, $number, $arrayimg, $apppedm) {
+            this._arrayimg = ['../img/1 (1).jpeg', '../img/1 (2).jpeg', '../img/1 (3).jpeg'];
+            this._number = Math.floor(Math.random() * this._arrayimg);
+            this._elem = document.querySelector('.slides');
+            this._parent = document.createElement(this._arrayimg);
+            this._apppedm.appendChild(this._parent);
+            this._elem.innerHTML = '<img src="+this._parent+" alt="icon">';
+            //            const ilosc = 6;
+            //            const max = 42;
+            //            this._parent = document.querySelector('.slides');
+            //            this._elem = document.createElement(this._parent);
+            //            this._elem.textContent = this._number;
+            //            console.log(this._elem);
+            //            this._parent.appendChild(this._elem);
+            //            var pushing = [];
+            //            for (var i = 0; i < ilosc; i++) {
+            //                var los = Math.floor(Math.random() * max + 1);
+            //                if (pushing.indexOf(los) < 0) {
+            //                    pushing.push(los);
+            //                    addElement('img', los);
+            //                }
+            //                else {
+            //                    i--;
+            //                    continue;
+            //                }
+            //                console.log(pushing);
+            //            }
         }
         new slideshow();
     })();
