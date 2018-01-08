@@ -163,5 +163,30 @@ body {
     }
 }
 
+.footer {
+    @include widthheight(100%,
+    10vh);
+    background-color: #8D6E63;
+    @include flexbox_standart( center,
+    center);
+    .container_footer {
+        @include widthheight(95%,
+        9vh);
+        @include flexbox_standart( space-between,
+        center);
+        .footer-center {
+            @include widthheight(250px,
+            9vh);
+            @include flexbox_standart( center,
+            center);
+            .footer-text {
+                font-size: 16px;
+                font-weight: 600;
+                word-spacing: 3px;
+            }
+        }
+    }
+}
+
 @import 'mobile/tablet.scss';
 @import 'mobile/phone.scss';
