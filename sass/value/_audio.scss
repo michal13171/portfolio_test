@@ -1,6 +1,6 @@
 .audio-player {
     height: 50px;
-    width: 350px;
+    width: 300px;
     color: rgb(255, 255, 255);
     color: white;
     -webkit-user-select: none;
@@ -16,8 +16,10 @@
 .controls {
     height: 50px;
     background-color: rgb(165, 42, 42);
-    width: 350px;
+    width: 300px;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .time {
@@ -28,40 +30,43 @@
     margin: 5px;
 }
 
-.ui-progressbar {
-    background: rgb(95, 158, 160);
+.play_pause img,
+.volume img {
+    width: 30px;
+    height: 30px;
 }
 
-.ui-progressbar-value {
-    background: rgb(127, 255, 0);
+.time {
+    top: 0;
 }
 
-.progressbar,
-.volume {
-    height: 10px;
-    display: inline-block;
-    border-radius: 0px;
+.audio_button_style {
+    width: 40px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
     border: none;
-    position: relative;
-    top: 16px;
+    outline: none;
+    background-color: inherit;
 }
 
 .progressbar {
     width: 150px;
+    height: 4px;
+    background-color: antiquewhite;
 }
 
-#play,
-#mute {
-    font-size: 16px;
-    width: 20px;
-    position: relative;
-    top: 17px;
+.ui-slider .ui-slider-handle {
+    width: 15px;
+    height: 15px;
+    border-radius: 300px;
+    background-color: rgb(34, 139, 34);
+    border: none;
+    outline: none;
 }
 
-#play {
-    margin-left: 15px;
-}
-
-.volume {
-    width: 50px;
+.ui-slider .ui-slider-handle:active {
+    background-color: rgb(222, 184, 135);
 }

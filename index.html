@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <title>Portfolio test</title>
 </head>
 
@@ -21,12 +22,12 @@
     <nav class="navbar">
         <ul class=" nav_list_one">
             <li class=" active"><img src="img/computer-72-216996.png" alt="computer"></li>
-            <li class="nav-item"><a class="item" href="">O mnie</a></li>
+            <li class="nav-item"><a class="item item-one" href="index.html">O mnie</a></li>
         </ul>
         <ul class="nav_list">
-            <li class="nav-item"><a class="item" href="">Technologie</a></li>
-            <li class="nav-item"><a class="item" href="">Projekty</a></li>
-            <li class="nav-item"><a class="item" href="">Kontakt</a></li>
+            <li class="nav-item"><a class="item item-two" href="technology.html">Technologie</a></li>
+            <li class="nav-item"><a class="item item-three" href="">Projekty</a></li>
+            <li class="nav-item"><a class="item item-four" href="">Kontakt</a></li>
         </ul>
     </nav>
     <section class="section_one">
@@ -35,13 +36,13 @@
                 <div class="box">
                     <h2>Hobby</h2>
                     <div class="audio_container">
-                        <audio class="player">
+                        <audio id="player" preload="none">
                             <source src="img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3" type="audio/mp3" /> </audio>
                         <div class="audio-player">
-                            <div class="controls"> <i id="play" class="fa fa-pause"></i> <span id="start-time" class="time">00:00</span>
-                                <div class="progressbar"></div> <span id="time" class="time">00:00</span> <i id="mute" class="fa fa-volume-up"></i>
-                                <div class="volume"></div>
-                            </div>
+                            <div class="controls">
+                                <button class="play_pause audio_button_style"><img src="img/ic_play_circle_outline_black_48dp.png" alt="play"></button>
+                                <button class="volume audio_button_style"><img src="img/ic_volume_down_black_48dp.png" alt="mute"></button>
+                                <div class="progressbar"></div> <span id="start-time" class="time">00:00</span> <span class="time" class="time">00:00</span> </div>
                         </div>
                     </div>
                 </div>

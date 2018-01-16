@@ -1,78 +1,27 @@
 'use strict';
 $(document).ready(function () {
-    var audio_player = $(".audio-player");
-    var play_button = $('#play');
-    var progress_bar = $(".progressbar");
-    var time = $("#time");
-    var mute_button = $('#mute');
-    var volume_bar = $('.volume');
-    var player = document.querySelector('.player');
-    var duration = 0;
-    var volume = 0.75;
-    player.onloadedmetadata = function () {
-        duration = player.duration;
-        progress_bar.progressbar("option", {
-            'max': duration
-        });
-    };
-    player.load();
-    player.volume = 0.75;
-    player.addEventListener("timeupdate", function () {
-        progress_bar.progressbar('value', player.currentTime);
-        time.text(getTime(player.currentTime));
-    }, false);
-
-    function getTime(t) {
-        var m = ~~(t / 60)
-            , s = ~~(t % 60);
-        return (m < 10 ? "0" + m : m) + ':' + (s < 10 ? "0" + s : s);
-    }
-
-    function getProgressBarClickInfo(progress_bar, e) {
-        var offset = progress_bar.position();
-        var x = e.pageX - offset.left; // or e.offsetX (less support, though)
-        var y = e.pageY - offset.top; // or e.offsetY
-        var max = progress_bar.progressbar("option", "max");
-        var value = x * max / progress_bar.width();
-        return {
-            x: x
-            , y: y
-            , max: max
-            , value: value
+    //audio
+    (function () {
+        function audio() {
+            this._audioplayer = $('#player');
+            this._volume = $('.volume');
+            //  this._play = document.querySelector('.play_pause');;
+            this._progressBar = $('.progressbar').slider();
+            this._Assignplay();
+        }
+        audio.prototype._Assignplay = function () {
+            $('.play_pause').click('click', this._play_orStop.bind(this), false);
         };
-    }
-    volume_bar.progressbar({
-        value: player.volume * 100
-    , });
-    volume_bar.click(function (e) {
-        var info = getProgressBarClickInfo($(this), e);
-        volume_bar.progressbar('value', info.value);
-        player.volume = info.value / info.max;
-    });
-    progress_bar.progressbar({
-        value: player.currentTime
-    , });
-    progress_bar.click(function (e) {
-        var info = getProgressBarClickInfo($(this), e);
-        player.currentTime = player.duration / info.max * info.value;
-    });
-    play_button.click(function () {
-        player[player.paused ? 'play' : 'pause']();
-        $(this).toggleClass("fa-play", !player.paused);
-        $(this).toggleClass("fa-pause", player.paused);
-    });
-    mute_button.click(function () {
-        if (player.volume == 0) {
-            player.volume = volume;
-        }
-        else {
-            volume = player.volume;
-            player.volume = 0;
-        }
-        volume_bar.progressbar('value', player.volume * 100);
-        $(this).toggleClass("fa-volume-up", player.volume != 0);
-        $(this).toggleClass("fa-volume-off", player.volume == 0);
-    });
+        audio.prototype._play_orStop = function () {
+            if (this._audioplayer.paused || this._audioplayer.ended) {
+                this._audioplayer.get(0).play();
+            }
+            else {
+                this._audioplayer.pause();
+            }
+        };
+        new audio();
+    })();
     // slider
     (function () {
         function slideshow($button) {
@@ -91,7 +40,7 @@ $(document).ready(function () {
             this._number.src = this._parent;
             this._elem = document.querySelector('.slides').appendChild(this._number);
         }
-        slideshow.prototype._proporties = function ($apppedm) {
+        slideshow.prototype._proporties = function ($apppedm, $newImage) {
             this._random();
             this._createelements();
             this._apppedm = [];
@@ -99,9 +48,31 @@ $(document).ready(function () {
                 this._apppedm[i] = new Image();
                 this._apppedm[i].src = this._arrayimg[i].src;
             }
-            var newImage = Math.floor(Math.random() * this._arrayimg.length);
-            this._elem.innerHTML = '<img src="' + this._arrayimg[newImage] + '"/>';
+            this._newImage = Math.floor(Math.random() * this._arrayimg.length);
+            this._elem.innerHTML = '<img src="' + this._arrayimg[this._newImage] + '"/>';
         }
         new slideshow();
+    })();
+    (function () {
+        function skills() {
+            this._prev = $('.previous_slider');
+            this._next = $('.next_slider');
+            this._result();
+        }
+        skills.prototype._result = function () {
+            this._next.addEventListener('click', this._nextslide.bind(this), true);
+        };
+        skills.prototype._nextslide = function () {
+            this._lists = ['img/1 (1).jpeg', 'img/1 (2).jpeg', 'img/1 (3).jpeg'];
+            this._number = document.createElement('div');
+            this._number.src = this._parent;
+            this._elem = document.querySelector('.slider_technology').appendChild(this._number);
+            for (var i = 0; i < this._arrayimg.length; i++) {
+                this._apppedm[i] = new Image();
+                this._apppedm[i].src = this._arrayimg[i].src;
+                this._elem.innerHTML = '<img src="' + this._apppedm[i] + '"/>';
+            }
+        };
+        new skills();
     })();
 });

@@ -101,6 +101,7 @@ body {
                 p {
                     word-break: break-all;
                     font-size: 16px;
+                    padding: 20px;
                 }
                 .audio_container {
                     @include widthheight(100%,
@@ -159,6 +160,53 @@ body {
         }
         .another {
             justify-content: center;
+        }
+    }
+}
+
+.section_second {
+    @include widthheight(100%,
+    80vh);
+    @include flexbox_standart(center,
+    center);
+    .section_two_div_container {
+        @include widthheight(95%,
+        79vh);
+        background-color: #EEEEEE;
+        .row {
+            @include widthheight(100%,
+            10vh);
+            @include flexbox_standart(center,
+            center);
+            >h1 {
+                font-size: 3rem;
+                font-weight: bold;
+                word-spacing: 3px;
+            }
+        }
+        .row-slider {
+            height: 50vh;
+            .previous_slider {
+                @include widthheight(100px,
+                10vh);
+                border: none;
+                outline: none;
+                background-color: inherit;
+                @include flexbox_standart(center,
+                center);
+                >img {
+                    @include widthheight(90px,
+                    auto);
+                    object-fit: cover;
+                }
+            }
+            .slider_technology {
+                @include widthheight(70%,
+                40vh);
+            }
+            .next_slider {
+                @extend .previous_slider;
+            }
         }
     }
 }
