@@ -1,19 +1,14 @@
 'use strict';
-var divisionByZod = 42 / "General Zod";
-// This can only be true if the value is NaN
-var valueIsNaN = (divisionByZod !== divisionByZod);
-// Outputs: true
-console.log(valueIsNaN);
 $(document).ready(function () {
     //audio
     (function () {
         function audio() {
             this._audioplayer = document.getElementById('player');
             this._volume = document.querySelector('.volume');
-            this._duration = document.querySelector('.current-time');
             this._currentTime = document.querySelector('.full-time');
             this._play = document.querySelector('.play_pause');
             this._progressBar = $('.progressbar').slider();
+            this._duration = document.querySelector('.current-time');
             this._Assignplay();
             this._AssignVol();
             this._time();
@@ -46,12 +41,12 @@ $(document).ready(function () {
             }
         };
         audio.prototype._time = function () {
-            this._minutes = Number.isNaN(parseInt(this._audioplayer.duration / 60));
-            this._seconds = Number.isNaN(parseInt(this._audioplayer.duration % 60));
-            if (this._minutes < 1 || this._minutes > 60) {
-                this._minutes = this._minutes.NaN;
-                console.log("Miesiąc musi być liczbą między 0 i 60." + this._minutes);
-            }
+            this._minutes = parseInt(this._audioplayer.duration.value / 60);
+            this._seconds = parseInt(this._audioplayer.duration % 60);
+            //            if (this._minutes < 1 || this._minutes > 60) {
+            //                this._minutes = this._minutes.NaN;
+            //                console.log("Miesiąc musi być liczbą między 0 i 60." + this._minutes);
+            //            }
             this._duration.innerHTML = this._minute + ' : ' + this._seconds;
             console.log(this._minutes);
         };
