@@ -5,13 +5,12 @@ $(document).ready(function () {
         function audio() {
             this._audioplayer = document.getElementById('player');
             this._volume = document.querySelector('.volume');
-            this._currentTime = document.querySelector('.full-time');
             this._play = document.querySelector('.play_pause');
             this._progressBar = $('.progressbar').slider();
-            this._duration = document.querySelector('.current-time');
             this._Assignplay();
             this._AssignVol();
             this._time();
+            this._updateTime();
         }
         audio.prototype._Assignplay = function () {
             $('.play_pause').click('click', this._play_orStop.bind(this), false);
@@ -23,10 +22,13 @@ $(document).ready(function () {
             if (this._audioplayer.paused || this._audioplayer.ended) {
                 this._audioplayer.play();
                 this._play.innerHTML = '<img src="img/ic_play_circle_outline_black_48dp.png"/>';
+                this._update = setInterval(this._updateTime, 500);
+                console.log(this._update);
             }
             else {
                 this._audioplayer.pause();
                 this._play.innerHTML = '<img src="img/ic_pause_circle_outline_black_48dp.png"/>';
+                window.clearInterval(this._update);
             }
         };
         audio.prototype._muteUnmute = function (e) {
@@ -41,14 +43,30 @@ $(document).ready(function () {
             }
         };
         audio.prototype._time = function () {
-            this._minutes = parseInt(this._audioplayer.duration.value / 60);
-            this._seconds = parseInt(this._audioplayer.duration % 60);
-            //            if (this._minutes < 1 || this._minutes > 60) {
-            //                this._minutes = this._minutes.NaN;
-            //                console.log("Miesiąc musi być liczbą między 0 i 60." + this._minutes);
-            //            }
-            this._duration.innerHTML = this._minute + ' : ' + this._seconds;
-            console.log(this._minutes);
+            this._audioplayer = new Audio();
+            this._audioplayer.src = "img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3";
+            this._audioplayer.addEventListener('loadedmetadata', function () {
+                this._minutes = parseInt(this.duration / 60);
+                this._seconds = parseInt(this.duration % 60);
+                this._duration = document.querySelector('.currentTime');
+                this._duration.innerHTML = this._minutes + ' : ' + this._seconds;
+                console.log(this._duration);
+            });
+        };
+        audio.prototype._updateTime = function () {
+            this._audioplayer = new Audio();
+            this._audioplayer.src = "img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3";
+            if (!this._audioplayer.ended) {
+                this._playMinutes = parseInt(this._audioplayer.currentTime / 60);
+                this._playSecundes = parseInt(this._audioplayer.currentTime % 60);
+                this._currentTime = document.querySelector('.fullTime');
+                this._currentTime.innerHTML = this._playMinutes + ' : ' + this._playSecundes;
+                console.log(this._currentTime);
+            }
+            else {
+                this._currentTime = 0.00;
+                console.log(this._currentTime);
+            }
         };
         new audio();
     })();
@@ -83,26 +101,26 @@ $(document).ready(function () {
         }
         new slideshow();
     })();
-    (function () {
-        function skills() {
-            this._prev = $('.previous_slider');
-            this._next = $('.next_slider');
-            this._result();
-        }
-        skills.prototype._result = function () {
-            this._next.addEventListener('click', this._nextslide.bind(this), true);
-        };
-        skills.prototype._nextslide = function () {
-            this._lists = ['img/1 (1).jpeg', 'img/1 (2).jpeg', 'img/1 (3).jpeg'];
-            this._number = document.createElement('div');
-            this._number.src = this._parent;
-            this._elem = document.querySelector('.slider_technology').appendChild(this._number);
-            for (var i = 0; i < this._arrayimg.length; i++) {
-                this._apppedm[i] = new Image();
-                this._apppedm[i].src = this._arrayimg[i].src;
-                this._elem.innerHTML = '<img src="' + this._apppedm[i] + '"/>';
-            }
-        };
-        new skills();
-    })();
+    //    (function () {
+    //        function skills() {
+    //            this._prev = $('.previous_slider');
+    //            this._next = $('.next_slider');
+    //            this._result();
+    //        }
+    //        skills.prototype._result = function () {
+    //            this._next.addEventListener('click', this._nextslide.bind(this), true);
+    //        };
+    //        skills.prototype._nextslide = function () {
+    //            this._lists = ['img/1 (1).jpeg', 'img/1 (2).jpeg', 'img/1 (3).jpeg'];
+    //            this._number = document.createElement('div');
+    //            this._number.src = this._parent;
+    //            this._elem = document.querySelector('.slider_technology').appendChild(this._number);
+    //            for (var i = 0; i < this._arrayimg.length; i++) {
+    //                this._apppedm[i] = new Image();
+    //                this._apppedm[i].src = this._arrayimg[i].src;
+    //                this._elem.innerHTML = '<img src="' + this._apppedm[i] + '"/>';
+    //            }
+    //        };
+    //        new skills();
+    //    })();
 });
