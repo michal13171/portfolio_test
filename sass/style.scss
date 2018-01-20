@@ -188,7 +188,7 @@ body {
             height: 50vh;
             .previous_slider {
                 @include widthheight(100px,
-                10vh);
+                auto);
                 border: none;
                 outline: none;
                 background-color: inherit;
@@ -203,6 +203,23 @@ body {
             .slider_technology {
                 @include widthheight(70%,
                 40vh);
+                @include flexbox_standart(space-between,
+                center);
+                flex-direction: row;
+                overflow: hidden;
+                >div {
+                    @include widthheight(3000px,
+                    150px);
+                    @include flexbox_standart(space-between,
+                    center);
+                    margin-left: 50px;
+                    img {
+                        @include widthheight(200px,
+                        150px);
+                        object-fit: cover;
+                        margin-left: 50px;
+                    }
+                }
             }
             .next_slider {
                 @extend .previous_slider;
