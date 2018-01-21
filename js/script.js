@@ -1,83 +1,92 @@
 'use strict';
+
+var audioplayer = document.getElementById('player');
+var volume = document.querySelector('.volume');
+var play = document.querySelector('.play_pause');
+var progressBar = $('.progressbar').slider();
+var duration = document.querySelector('.currentTime');
+var currentTime = document.querySelector('.fullTime');
+
+play.addEventListener('click', audio, false);
+volume.addEventListener('click', muteUnmute, false);
+
+function audio() {
+    if (audioplayer.paused ) {
+        audioplayer.play();
+        play.innerHTML = '<img src="img/ic_play_circle_outline_black_48dp.png"/>';
+        window.clearInterval(time);
+    }
+    else {
+        audioplayer.pause();
+        play.innerHTML = '<img src="img/ic_pause_circle_outline_black_48dp.png"/>';
+        time = setInterval(updateTime, 500);
+        console.log(time);
+    }
+}
+function muteUnmute(e) {
+    e.preventDefault();
+    if (audioplayer.muted === true) {
+        audioplayer.muted = false;
+        volume.innerHTML = '<img src="img/ic_volume_down_black_48dp.png"/>';
+    }
+    else {
+        audioplayer.muted = true;
+        volume.innerHTML = '<img src="img/ic_volume_mute_black_48dp.png"/>';
+    }
+}
+audioplayer.addEventListener('loadedmetadata', time ,false);
+function time() {
+    var minutes=parseInt(audioplayer.duration/60);
+    var seconds=parseInt(audioplayer.duration%60);
+    duration.innerHTML=minutes+' : '+seconds;
+    console.log(duration);
+
+}
+function updateTime() {
+            if (audioplayer.ended) {
+                var playMinutes = parseInt(audioplayer.currentTime / 60);
+                var playSecundes = parseInt(audioplayer.currentTime % 60);
+                currentTime.innerHTML = playMinutes + ' : ' + playSecundes;
+                console.log(currentTime);
+                console.log(playSecundes);
+            }
+            else {
+                currentTime = 0.00;
+                console.log(currentTime);
+            }
+}
+
+console.log(updateTime);
 $(document).ready(function () {
     //audio
-    (function () {
-        function audio() {
-            this._audioplayer = document.getElementById('player');
-            this._volume = document.querySelector('.volume');
-            this._play = document.querySelector('.play_pause');
-            this._progressBar = $('.progressbar').slider();
-            this._Assignplay();
-            this._AssignVol();
-            this._time();
-            this._updateTime();
-        }
-        audio.prototype._Assignplay = function () {
-            $('.play_pause').click('click', this._play_orStop.bind(this), false);
-        };
-        audio.prototype._AssignVol = function () {
-            this._volume.addEventListener('click', this._muteUnmute.bind(this), false);
-        };
-        audio.prototype._play_orStop = function () {
-            if (this._audioplayer.paused || this._audioplayer.ended) {
-                this._audioplayer.play();
-                this._play.innerHTML = '<img src="img/ic_play_circle_outline_black_48dp.png"/>';
-                window.clearInterval(this._update);
-            }
-            else {
-                this._audioplayer.pause();
-                this._play.innerHTML = '<img src="img/ic_pause_circle_outline_black_48dp.png"/>';
-                this._update = setInterval(this._updateTime, 500);
-                console.log(this._update);
-            }
-        };
-        audio.prototype._muteUnmute = function (e) {
-            e.preventDefault();
-            if (this._audioplayer.muted === true) {
-                this._audioplayer.muted = false;
-                this._volume.innerHTML = '<img src="img/ic_volume_down_black_48dp.png"/>';
-            }
-            else {
-                this._audioplayer.muted = true;
-                this._volume.innerHTML = '<img src="img/ic_volume_mute_black_48dp.png"/>';
-            }
-        };
-        audio.prototype._time = function () {
-            this._audioplayer = new Audio();
-            this._audioplayer.src = "img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3";
-            this._audioplayer.addEventListener('loadedmetadata', function () {
-                this._minutes = parseInt(this.duration / 60);
-                this._seconds = parseInt(this.duration % 60);
-                this._duration = document.querySelector('.currentTime');
-                this._duration.innerHTML = this._minutes + ' : ' + this._seconds;
-                console.log(this._duration);
-            });
-        };
-        audio.prototype._updateTime = function () {
-            this._audioplayer = new Audio();
-            this._audioplayer.src = "img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3";
-            if (!this._audioplayer.ended) {
-                this._update = setInterval(this._updateTime, 500)
-                this._playMinutes = parseInt(this._audioplayer.currentTime / 60);
-                this._playSecundes = parseInt(this._audioplayer.currentTime % 60);
-                this._currentTime = document.querySelector('.fullTime');
-                this._currentTime.innerHTML = this._playMinutes + ' : ' + this._playSecundes;
-                console.log(this._currentTime);
-                console.log(this._playSecundes);
-            }
-            else {
-                this._currentTime = 0.00;
-                console.log(this._currentTime);
-            }
-        };
-        new audio();
-    })();
+    // (function () {
+
+    //     audio.prototype._updateTime = function () {
+    //         this._audioplayer = new Audio();
+    //         this._audioplayer.src = "img/muzmo_ru_Eisbrecher_2017_-_Rot_Wie_Die_Liebe_47622946.mp3";
+    //         if (!this._audioplayer.ended) {
+    //             this._update = setInterval(this._updateTime, 500)
+    //             this._playMinutes = parseInt(this._audioplayer.currentTime / 60);
+    //             this._playSecundes = parseInt(this._audioplayer.currentTime % 60);
+    //             this._currentTime = document.querySelector('.fullTime');
+    //             this._currentTime.innerHTML = this._playMinutes + ' : ' + this._playSecundes;
+    //             console.log(this._currentTime);
+    //             console.log(this._playSecundes);
+    //         }
+    //         else {
+    //             this._currentTime = 0.00;
+    //             console.log(this._currentTime);
+    //         }
+    //     };
+    //     new audio();
+    // })();
     // slider
     (function () {
         function slideshow($button) {
             this._button = document.querySelector('.click_slider');
             this._click_result();
         }
+
         slideshow.prototype._click_result = function () {
             this._button.addEventListener('click', this._proporties.bind(this), false);
         }

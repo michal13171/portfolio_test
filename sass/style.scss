@@ -147,12 +147,12 @@ body {
                 @include flexbox_standart(center,
                 center);
                 flex-direction: column;
-                >h2 {
+                > h2 {
                     width: 400px;
                     border-bottom: 1px solid rgb(255, 255, 255);
                     line-height: 0.1em;
                 }
-                >h2 span {
+                > h2 span {
                     background: #90A4AE;
                     padding: 0 10px;
                 }
@@ -178,7 +178,7 @@ body {
             10vh);
             @include flexbox_standart(center,
             center);
-            >h1 {
+            > h1 {
                 font-size: 3rem;
                 font-weight: bold;
                 word-spacing: 3px;
@@ -194,7 +194,7 @@ body {
                 background-color: inherit;
                 @include flexbox_standart(center,
                 center);
-                >img {
+                > img {
                     @include widthheight(90px,
                     auto);
                     object-fit: cover;
@@ -207,18 +207,15 @@ body {
                 center);
                 flex-direction: row;
                 overflow: hidden;
-                >div {
-                    @include widthheight(3000px,
+                margin: 0 auto;
+                > img {
+                    @include widthheight(200px,
                     150px);
-                    @include flexbox_standart(space-between,
+                    margin: 15px;
+                    min-height: 86px;
+                    min-width: 85px;
+                    @include flexbox_standart(center,
                     center);
-                    margin-left: 50px;
-                    img {
-                        @include widthheight(200px,
-                        150px);
-                        object-fit: cover;
-                        margin-left: 50px;
-                    }
                 }
             }
             .next_slider {
@@ -232,17 +229,17 @@ body {
     @include widthheight(100%,
     10vh);
     background-color: #8D6E63;
-    @include flexbox_standart( center,
+    @include flexbox_standart(center,
     center);
     .container_footer {
         @include widthheight(95%,
         9vh);
-        @include flexbox_standart( space-between,
+        @include flexbox_standart(space-between,
         center);
         .footer-center {
             @include widthheight(250px,
             9vh);
-            @include flexbox_standart( center,
+            @include flexbox_standart(center,
             center);
             .footer-text {
                 font-size: 16px;
