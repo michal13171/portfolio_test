@@ -58,7 +58,8 @@ $(document).ready(function () {
             var size = parseInt(audioplayer.currentTime * sizeBar / audioplayer.duration);
             // defaultprogressbar.width = size + "px";
             var str = "px";
-            defaultprogressbar.innerHTML = defaultprogressbar.width = size; // '<div style=".size. +str"></div>';
+            sizeBar++;
+            defaultprogressbar.innerHTML = defaultprogressbar.width = defaultprogressbar.getAttribute('width' + size) + size;
             currentTime.innerHTML = playMinutes + ' : ' + playSecundes;
             console.log(defaultprogressbar);
             console.log(size);
