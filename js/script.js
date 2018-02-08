@@ -4,7 +4,7 @@ $(document).ready(function () {
     var volume = document.querySelector('.volume');
     var play = document.querySelector('.play_pause');
     var progressBar = $('.progressbar');
-    var defaultprogressbar = document.querySelector('.defaultprogressbar'); //$('.defaultprogressbar').slider();
+    var defaultprogressbar = $('.defaultprogressbar').slider();
     var sizeBar = 150;
     var duration = document.querySelector('.currentTime');
     var currentTime = document.querySelector('.fullTime');
@@ -15,8 +15,7 @@ $(document).ready(function () {
         if (audioplayer.paused) {
             audioplayer.play();
             play.innerHTML = '<img src="img/ic_play_circle_outline_black_48dp.png"/>';
-            time = setInterval(updateTime, 500);
-            console.log(time);
+            time = setInterval(updateTime, 1000);
         }
         else {
             audioplayer.pause();
@@ -39,35 +38,32 @@ $(document).ready(function () {
     audioplayer.addEventListener('loadedmetadata', time, false);
 
     function time() {
-        var minutes = parseInt(audioplayer.duration / 60);
-        var seconds = parseInt(audioplayer.duration % 60);
+        var minutes = pad(parseInt(audioplayer.duration / 60));
+        var seconds = pad(parseInt(audioplayer.duration % 60));
         duration.innerHTML = minutes + ' : ' + seconds;
-        console.log(duration);
     }
 
     function updateTime() {
         if (audioplayer.ended) {
             currentTime.innerHTML = "0.00";
-            console.log(currentTime);
             defaultprogressbar.width = "0px";
             window.clearInterval(time);
         }
         else {
-            var playMinutes = parseInt(audioplayer.currentTime / 60);
-            var playSecundes = parseInt(audioplayer.currentTime % 60);
+            var playMinutes = pad(parseInt(audioplayer.currentTime / 60));
+            var playSecundes = pad(parseInt(audioplayer.currentTime % 60));
             var size = parseInt(audioplayer.currentTime * sizeBar / audioplayer.duration);
-            // defaultprogressbar.width = size + "px";
-            var str = "px";
-            sizeBar++;
-            defaultprogressbar.innerHTML = defaultprogressbar.width = defaultprogressbar.getAttribute('width' + size) + size;
+            defaultprogressbar.width(size + "px");
             currentTime.innerHTML = playMinutes + ' : ' + playSecundes;
-            console.log(defaultprogressbar);
-            console.log(size);
         }
+    }
+
+    function pad(d) {
+        return (d < 10) ? '0' + d.toString() : d.toString();
     }
     // slider
     (function () {
-        function slideshow($button) {
+        function slideshow() {
             this._button = document.querySelector('.click_slider');
             this._click_result();
         }
